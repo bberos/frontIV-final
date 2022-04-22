@@ -1,9 +1,13 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, RefObject } from "react";
 import { useDispatch } from "react-redux";
 import { fetchCharactersThunk } from "../../actions/charactersActions";
 import "./filtros.css";
 
-const Filtros: FC = () => {
+export interface FiltersProps {
+  clearFilter: RefObject<HTMLInputElement>;
+}
+
+const Filtros: FC<FiltersProps> = ({ clearFilter }: FiltersProps) => {
   const dispatch = useDispatch();
 
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +33,7 @@ const Filtros: FC = () => {
         type="text"
         placeholder="Rick, Morty, Beth, Alien, ...etc"
         name="nombre"
+        ref={clearFilter}
         onChange={onChange}
       />
     </div>

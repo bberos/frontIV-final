@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { fetchCharactersThunk } from "../../actions/charactersActions";
 import { useSelector } from "../../store";
@@ -12,7 +12,7 @@ import "./paginacion.css";
  * @returns un JSX element
  */
 const Pagination: FC = () => {
-  const { data, status } = useSelector((state) => state.data);
+  const { data } = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
   const goPrev = () => {

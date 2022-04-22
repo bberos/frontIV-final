@@ -5,6 +5,10 @@ interface Character {
   image: string;
   species: string;
   episode: string[];
+  gender: string;
+  origin: {
+    name: string;
+  };
 }
 
 export default Character;

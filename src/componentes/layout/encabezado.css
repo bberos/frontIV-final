@@ -1,8 +1,8 @@
 header {
-  background-color: white;
+  background-color: rgb(13, 13, 13);
   border-bottom: 1px solid #d0d0d0;
   width: calc(100% - 60px);
-  color: black;
+  color: rgb(142, 142, 142);
   padding: 25px 30px;
 }
 
@@ -13,8 +13,8 @@ header > div {
   align-items: center;
 }
 
-header > div h2{
-  margin: 0
+header > div h2 {
+  margin: 0;
 }
 
 header > div nav ul {
@@ -23,7 +23,6 @@ header > div nav ul {
   align-items: center;
 }
 
-
 header > div nav ul li {
   list-style: none;
 }
@@ -31,7 +30,7 @@ header > div nav ul li {
 header > div nav ul li a {
   padding: 5px 20px;
   text-decoration: none;
-  color: black;
+  color: rgb(130, 130, 130);
   opacity: 0.8;
   font-size: 16px;
   font-weight: 500;

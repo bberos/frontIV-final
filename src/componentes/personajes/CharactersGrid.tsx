@@ -1,15 +1,10 @@
 import { FC, useEffect } from "react";
-import {
-  TypedUseSelectorHook,
-  useDispatch,
-  useSelector as useReduxSelector,
-} from "react-redux";
+import { useDispatch } from "react-redux";
 import "./grilla-personajes.css";
 import CharacterCard from "./CharacterCard";
-import { IRootState } from "../../store";
+import { useSelector } from "../../store";
 import Character from "../../types/character.types";
 import { fetchCharactersThunk } from "../../actions/charactersActions";
-export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector;
 
 /**
  * Grilla de personajes para la pagina de inicio
@@ -23,8 +18,6 @@ export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector;
 const CharactersGrid: FC = () => {
   const dispatch = useDispatch();
   const { data, status } = useSelector((state) => state.data);
-  const mapa = useSelector((state) => state.favourites.favoritosMapa);
-  console.log("🚀 ~ file: CharactersGrid.tsx ~ line 27 ~ mapa", mapa);
   useEffect(() => {
     dispatch(
       fetchCharactersThunk("https://rickandmortyapi.com/api/character/")

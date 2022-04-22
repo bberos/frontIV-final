@@ -3,13 +3,11 @@ import { FavouritesAction } from "../actions/favouritesAction";
 import Character from "../types/character.types";
 
 export interface FavCharactersState {
-  // favoritos: Personaje[];
-  favoritosMapa: Map<number, Character>;
+  favouritesMapa: Character[];
 }
 
 const initialState: FavCharactersState = {
-  // favoritos: [],
-  favoritosMapa: new Map(),
+  favouritesMapa: [],
 };
 
 const favouritesCharactersReducer: Reducer<
@@ -18,22 +16,20 @@ const favouritesCharactersReducer: Reducer<
 > = (state = initialState, action): FavCharactersState => {
   switch (action.type) {
     case "TOGGLE_FAV":
-      const map = new Map<number, Character>();
-      state.favoritosMapa.forEach((character) => {
-        map.set(character.id, character);
-      });
+      let map = state.favouritesMapa;
 
-      const found = state.favoritosMapa.has(action.character.id);
+      const found = map.find((char) => char.id === action.character.id);
       if (found) {
-        map.delete(action.character.id);
+        map = state.favouritesMapa.filter(
+          (char) => char.id !== action.character.id
+        );
       } else {
-        map.set(action.character.id, action.character);
+        map.push(action.character);
       }
+      return { ...state, favouritesMapa: map };
 
-      return { ...state, favoritosMapa: map };
     case "CLEAN_FAV":
-      // return {...state, favoritos: []}
-      return { ...initialState };
+      return { ...state, favouritesMapa: [] };
     default:
       return state;
   }

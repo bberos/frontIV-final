@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleFav } from "../../actions/favouritesAction";
 import { useSelector } from "../../store";
-import Character from "../../types/character.types";
 import "./boton-favorito.css";
 
 /**
@@ -15,28 +15,28 @@ import "./boton-favorito.css";
  */
 
 const FavouriteButton = ({ character }: any) => {
-  const mapa = useSelector((state) => state.favourites.favoritosMapa);
+  const mapa = useSelector((state) => state.favourites.favouritesMapa);
+  const found = mapa.find((char) => char.id === character.id);
+  const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
-  const toggleFavorito = () => {
+  const toggleFavourite = () => {
     dispatch(toggleFav(character));
+    setIsFav(!isFav);
   };
-
-  // if (mapa.has(personaje.id)) return <div onClick={toggleFav}>FAVORITO</div>;
-  // return <div onClick={toggleFav}>-</div>;
 
   return (
     <div className="boton-favorito">
-      {mapa.has(character.id) ? (
+      {found ? (
         <img
           src={"/imagenes/star-filled.png"}
           alt={"favorito"}
-          onClick={toggleFavorito}
+          onClick={toggleFavourite}
         />
       ) : (
         <img
           src={"/imagenes/star.png"}
           alt={"favorito"}
-          onClick={toggleFavorito}
+          onClick={toggleFavourite}
         />
       )}
     </div>

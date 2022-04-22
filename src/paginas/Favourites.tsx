@@ -1,11 +1,10 @@
 import { FC } from "react";
-import { render } from "react-dom";
 import { useDispatch } from "react-redux";
 import { cleanFav } from "../actions/favouritesAction";
 import CharacterCard from "../componentes/personajes/CharacterCard";
-import CharactersGrid from "../componentes/personajes/CharactersGrid";
 import { useSelector } from "../store";
 import Character from "../types/character.types";
+import "../componentes/personajes/grilla-personajes.css";
 
 /**
  * Esta es la pagina de favoritos. Aquí se deberan ver todos los personajes marcados como favoritos
@@ -18,17 +17,25 @@ import Character from "../types/character.types";
 
 const Favourites: FC = () => {
   const dispatch = useDispatch();
-  const { favoritosMapa } = useSelector((state) => state.favourites);
+  const { favouritesMapa } = useSelector((state) => state.favourites);
+
+  const cleanAll = () => {
+    dispatch(cleanFav());
+  };
 
   return (
     <div className="container">
       <div className="actions">
         <h3>Personajes Favoritos</h3>
-        <button className="danger" onClick={() => {}}>
-          LIMPIAR FAVORITOS
+        <button className="danger" onClick={cleanAll}>
+          Limpiar Favoritos
         </button>
-        {favoritosMapa.forEach((character: Character) => {
-          console.log(character);
+      </div>
+      <div className="grilla-personajes">
+        {!favouritesMapa[0] && (
+          <div>No hay personajes seleccionados como favoritos</div>
+        )}
+        {favouritesMapa.map((character: Character) => {
           return (
             <CharacterCard
               key={"character_" + character.id}
@@ -37,7 +44,6 @@ const Favourites: FC = () => {
           );
         })}
       </div>
-      {/* <CharactersGrid /> */}
     </div>
   );
 };

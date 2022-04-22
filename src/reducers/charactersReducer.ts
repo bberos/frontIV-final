@@ -3,18 +3,12 @@ import { CharactersActions } from "../actions/charactersActions";
 import DataResult from "../types/data.types";
 
 export type CharactersState = {
-  // search: string;
-  // selectedCharacter: null;
-  // favCharacter: [];
   data: DataResult;
   status: "IDLE" | "LOADING" | "COMPLETED" | "FAILED";
   errorMessage: string | null;
 };
 
 const initialState: CharactersState = {
-  // search: "",
-  // selectedCharacter: null,
-  // favCharacter: [],
   data: { info: { next: "", prev: "" }, results: [], error: "" },
   status: "IDLE",
   errorMessage: null,
