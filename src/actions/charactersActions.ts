@@ -1,7 +1,8 @@
 import { Action, ActionCreator, ThunkAction } from "@reduxjs/toolkit";
-import { searchCharactersAPI } from "../services/characters.services";
+import { getCharactersAPI } from "../services/characters.services";
 import { IRootState } from "../store";
 import Character from "../types/character.types";
+import DataResult from "../types/data.types";
 
 interface FetchCharactersPendingAction extends Action {
   type: "FETCH_CHARACTERS_PENDING";
@@ -9,7 +10,7 @@ interface FetchCharactersPendingAction extends Action {
 }
 interface FetchCharactersSuccessAction extends Action {
   type: "FETCH_CHARACTERS_SUCCESS";
-  characters: Character[];
+  data: DataResult;
 }
 
 interface FetchCharactersFailedAction extends Action {
@@ -27,11 +28,11 @@ const fetchCharactersPending: ActionCreator<FetchCharactersPendingAction> = (
 };
 
 const fetchCharactersSuccess: ActionCreator<FetchCharactersSuccessAction> = (
-  characters: Character[]
+  data: DataResult
 ) => {
   return {
     type: "FETCH_CHARACTERS_SUCCESS",
-    characters: characters,
+    data: data,
   };
 };
 
@@ -44,24 +45,24 @@ const fetchCharactersFailure: ActionCreator<FetchCharactersFailedAction> = (
   };
 };
 
-export type CharacterActions =
+export type CharactersActions =
   | ReturnType<typeof fetchCharactersPending>
   | ReturnType<typeof fetchCharactersSuccess>
   | ReturnType<typeof fetchCharactersFailure>;
 
-interface FetchCharactersThunkAction
-  extends ThunkAction<void, IRootState, unknown, CharacterActions> {}
+interface fetchCharactersThunkAction
+  extends ThunkAction<void, IRootState, unknown, CharactersActions> {}
 
 export const fetchCharactersThunk = (
   query: string
-): FetchCharactersThunkAction => {
+): fetchCharactersThunkAction => {
   return async (dispatch, getState) => {
     // Marcamos el state como loading
     dispatch(fetchCharactersPending(query));
     //
     try {
-      const characters: Character[] = await searchCharactersAPI(query);
-      dispatch(fetchCharactersSuccess(characters));
+      const data: DataResult = await getCharactersAPI(query);
+      dispatch(fetchCharactersSuccess(data));
     } catch (e) {
       dispatch(fetchCharactersFailure(e));
     }

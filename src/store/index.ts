@@ -8,11 +8,13 @@ import {
 } from "react-redux";
 import thunk from "redux-thunk";
 import charactersReducer from "../reducers/charactersReducer";
+import favouritesCharactersReducer from "../reducers/favouritesCharactersReducer";
 
 // import characterReducer from "../reducers/characterReducer";
 
 const rootReducer = combineReducers({
-  characters: charactersReducer,
+  data: charactersReducer,
+  favourites: favouritesCharactersReducer,
 });
 
 export type IRootState = ReturnType<typeof rootReducer>;

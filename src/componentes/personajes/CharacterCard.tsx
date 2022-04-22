@@ -21,10 +21,7 @@ const CharacterCard = ({ characterData }: CharacterCardProps) => {
       <img src={characterData.image} alt="Rick Sanchez" />
       <div className="tarjeta-personaje-body">
         <span>{characterData.name}</span>
-        <FavouriteButton
-          isFavourite={false}
-          onClick={() => console.log("onClick")}
-        />
+        <FavouriteButton character={characterData} />
       </div>
     </div>
   );

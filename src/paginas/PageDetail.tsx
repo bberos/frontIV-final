@@ -30,10 +30,7 @@ const PageDetail: FC = () => {
             <p>Planeta: Earth</p>
             <p>Genero: Male</p>
           </div>
-          <FavouriteButton
-            isFavourite={false}
-            onClick={() => console.log("favourite")}
-          />
+          <FavouriteButton isFavourite={false} onClick={() => {}} />
         </div>
       </div>
       <h4>Lista de episodios donde apareció el personaje</h4>

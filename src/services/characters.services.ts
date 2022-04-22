@@ -1,13 +1,8 @@
-import Character from "../types/character.types";
+import DataResult from "../types/data.types";
 
-export const searchCharactersAPI = async (
-  name?: string
-): Promise<Character[]> => {
-  let params = "?";
-  if (name) {
-    params += `name=${name}`;
-  }
-  return fetch(`https://rickandmortyapi.com/api/character/${params}`)
-    .then((data) => data.json())
-    .then((data) => data.results);
+export const getCharactersAPI = async (name: string): Promise<DataResult> => {
+  // let params = "?";
+  const response = await fetch(name);
+  const data = response.json();
+  return data;
 };

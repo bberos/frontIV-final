@@ -1,9 +1,9 @@
+import { useDispatch } from "react-redux";
+import { toggleFav } from "../../actions/favouritesAction";
+import { useSelector } from "../../store";
+import Character from "../../types/character.types";
 import "./boton-favorito.css";
 
-export interface FavouriteButtonProps {
-  isFavourite: boolean;
-  onClick: any;
-}
 /**
  * Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo
  *
@@ -14,14 +14,31 @@ export interface FavouriteButtonProps {
  * @returns un JSX element
  */
 
-const FavouriteButton = ({ isFavourite, onClick }: FavouriteButtonProps) => {
-  const src = isFavourite
-    ? "/src/assets/icons/pickleFav.svg"
-    : "/src/assets/icons/pickleFav.svg";
+const FavouriteButton = ({ character }: any) => {
+  const mapa = useSelector((state) => state.favourites.favoritosMapa);
+  const dispatch = useDispatch();
+  const toggleFavorito = () => {
+    dispatch(toggleFav(character));
+  };
+
+  // if (mapa.has(personaje.id)) return <div onClick={toggleFav}>FAVORITO</div>;
+  // return <div onClick={toggleFav}>-</div>;
 
   return (
     <div className="boton-favorito">
-      <img src={src} alt={"favorito"} />
+      {mapa.has(character.id) ? (
+        <img
+          src={"/imagenes/star-filled.png"}
+          alt={"favorito"}
+          onClick={toggleFavorito}
+        />
+      ) : (
+        <img
+          src={"/imagenes/star.png"}
+          alt={"favorito"}
+          onClick={toggleFavorito}
+        />
+      )}
     </div>
   );
 };
