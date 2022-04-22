@@ -9,7 +9,6 @@ import Episode from "../types/episode.types";
 /**
  * Esta es la pagina de detalle. Aqui se puede mostrar la vista sobre el personaje seleccionado junto con la lista de episodios en los que aparece
  *
- * EL TRABAJO SOBRE ESTE ARCHIVO ES OPCIONAL Y NO ES REQUISITO DE APROBACION
  *
  *
  *
@@ -37,7 +36,12 @@ const PageDetail: FC = () => {
       getEpisodesAPI(episode).then((episodios) => setEpisodes(episodios));
     }
   }, []);
-
+  if (!selectedCharacter)
+    return (
+      <div className="container">
+        <h3>No hay ningun personaje seleccionado</h3>
+      </div>
+    );
   return (
     <div className="container">
       <h3>{selectedCharacter?.name}</h3>

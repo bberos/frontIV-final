@@ -1,9 +1,13 @@
 header {
   background-color: rgb(13, 13, 13);
-  border-bottom: 1px solid #d0d0d0;
+  border-bottom: 1px solid #030303c2;
   width: calc(100% - 60px);
-  color: rgb(142, 142, 142);
+  color: #40b5cb;
   padding: 25px 30px;
+  box-shadow: rgb(0 0 0 / 75%) 1px 4px 7px 0px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 header > div {
@@ -30,7 +34,7 @@ header > div nav ul li {
 header > div nav ul li a {
   padding: 5px 20px;
   text-decoration: none;
-  color: rgb(130, 130, 130);
+  color: #40b5cb;
   opacity: 0.8;
   font-size: 16px;
   font-weight: 500;

@@ -32,9 +32,7 @@ const Favourites: FC = () => {
         </button>
       </div>
       <div className="grilla-personajes">
-        {!favouritesMapa[0] && (
-          <div>No hay personajes seleccionados como favoritos</div>
-        )}
+        {!favouritesMapa[0] && <div>No hay favoritos</div>}
         {favouritesMapa.map((character: Character) => {
           return (
             <CharacterCard

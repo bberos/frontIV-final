@@ -24,10 +24,30 @@ const CharactersGrid: FC = () => {
     );
   }, []);
 
-  if (status === "LOADING") return <div>Cargando personajes...</div>;
-  if (status === "FAILED") return <div>No se pudo cargar los personajes.</div>;
+  if (status === "LOADING")
+    return (
+      <div
+        style={{ display: "flex", justifyContent: "center", fontSize: "24px" }}
+      >
+        Cargando personajes...
+      </div>
+    );
+  if (status === "FAILED")
+    return (
+      <div
+        style={{ display: "flex", justifyContent: "center", fontSize: "24px" }}
+      >
+        No se pudo cargar los personajes.
+      </div>
+    );
   if (!data || data?.results?.length === 0 || data.error?.length >= 1)
-    return <>No hay personajes con ese nombre</>;
+    return (
+      <div
+        style={{ display: "flex", justifyContent: "center", fontSize: "24px" }}
+      >
+        No hay personajes con ese nombre.
+      </div>
+    );
 
   return (
     <div className="grilla-personajes">
